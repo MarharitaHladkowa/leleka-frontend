@@ -17,7 +17,7 @@ const validationSchema = Yup.object({
   name: Yup.string().required("Обов'язкове поле"),
   email: Yup.string().email('Некоректний email').required("Обов'язкове поле"),
   password: Yup.string()
-    .min(6, 'Мінімум 6 символів')
+    .min(8, 'Мінімум 8 символів')
     .required("Обов'язкове поле"),
 });
 
@@ -42,7 +42,7 @@ export default function RegisterForm() {
       if (res.status === 201) {
         toast.success('Реєстрація успішна 🎉');
         router.push('/profile/edit');
-      } else if (res.status === 409) {
+      } else if (res.status === 400) {
         toast.error('Цей email вже зареєстрований');
       } else {
         toast.error(data.error || 'Помилка реєстрації');
