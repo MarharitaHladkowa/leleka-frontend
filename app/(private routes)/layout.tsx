@@ -2,6 +2,7 @@
 
 import { ReactNode } from 'react';
 import Providers from '@/lib/providers';
+import Header from '@/components/Header/Header';
 
 type Props = {
   children: ReactNode;
@@ -10,7 +11,10 @@ type Props = {
 export default function Layout({ children }: Props) {
   return (
     <Providers>
-      <div className="private-layout">{children}</div>
+      <Header />
+      <main className="container">
+        {children}
+      </main>
     </Providers>
   );
 }
