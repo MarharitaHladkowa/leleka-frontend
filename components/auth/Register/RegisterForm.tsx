@@ -23,7 +23,7 @@ const validationSchema = Yup.object({
 });
 
 export default function RegisterForm() {
-  const setUser = useAuthStore((state) => state.setUser)
+  const setUser = useAuthStore((state) => state.setUser);
   const router = useRouter();
 
   const handleSubmit = async (
@@ -40,13 +40,11 @@ export default function RegisterForm() {
       });
 
       const data = await res.json();
-      const name = data.name;
-      const email = data.email;
-      const avatarURL = data.avatarURL;
-      setUser({ name, email, avatarURL })
-      console.log('User: ', { name, email, avatarURL});
 
       if (res.status === 201) {
+        const { name, email, avatarURL } = data;
+        setUser({ name, email, avatarURL });
+
         toast.success('Реєстрація успішна 🎉');
         router.push('/profile/edit');
       } else if (res.status === 400) {
@@ -55,11 +53,9 @@ export default function RegisterForm() {
         toast.error(data.error || 'Помилка реєстрації');
       }
     } catch (error: unknown) {
-      if (error instanceof Error) {
-        toast.error(error.message);
-      } else {
-        toast.error('Помилка реєстрації');
-      }
+      toast.error(
+        error instanceof Error ? error.message : 'Помилка реєстрації'
+      );
     } finally {
       setSubmitting(false);
     }
@@ -72,11 +68,11 @@ export default function RegisterForm() {
           <div className={styles.logoContainer}>
             <div className={styles.logoWrapper}>
               <div className={styles.logo}>
-                <svg width="31" height="30" className="icon-leleka">
-                  <use href="/icon-sprite.svg#icon-logo"></use>
+                <svg width="31" height="30">
+                  <use href="/icon-sprite.svg#icon-logo" />
                 </svg>
-                <svg width="61" height="13" className="text-leleka">
-                  <use href="/icon-sprite.svg#icon-leleka"></use>
+                <svg width="61" height="13">
+                  <use href="/icon-sprite.svg#icon-leleka" />
                 </svg>
               </div>
             </div>
@@ -90,14 +86,18 @@ export default function RegisterForm() {
               validationSchema={validationSchema}
               onSubmit={handleSubmit}
             >
-              {({ isSubmitting }) => (
-                <Form className={styles.form}>
+              {({ isSubmitting, errors, touched, submitCount }) => (
+                <Form className={styles.form} noValidate>
                   <label className={styles.label}>
                     Ім’я*
                     <Field
                       name="name"
                       placeholder="Ваше імʼя"
-                      className={styles.input}
+                      className={`${styles.input} ${
+                        errors.name && touched.name && submitCount > 0
+                          ? styles.inputError
+                          : ''
+                      }`}
                     />
                     <ErrorMessage
                       name="name"
@@ -111,7 +111,11 @@ export default function RegisterForm() {
                     <Field
                       name="email"
                       placeholder="hello@leleka.com"
-                      className={styles.input}
+                      className={`${styles.input} ${
+                        errors.email && touched.email && submitCount > 0
+                          ? styles.inputError
+                          : ''
+                      }`}
                     />
                     <ErrorMessage
                       name="email"
@@ -126,7 +130,11 @@ export default function RegisterForm() {
                       name="password"
                       type="password"
                       placeholder="********"
-                      className={styles.input}
+                      className={`${styles.input} ${
+                        errors.password && touched.password && submitCount > 0
+                          ? styles.inputError
+                          : ''
+                      }`}
                     />
                     <ErrorMessage
                       name="password"
@@ -154,7 +162,8 @@ export default function RegisterForm() {
             </Formik>
           </div>
         </div>
-        <div className={styles.background}></div>
+
+        <div className={styles.background} />
       </div>
     </section>
   );
