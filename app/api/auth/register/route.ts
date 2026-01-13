@@ -5,12 +5,32 @@ import { isAxiosError } from 'axios';
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const apiRes = await NextServer.post('/auth/register', body);
 
-    return NextResponse.json(apiRes.data, { status: apiRes.status });
-  } catch (error: unknown) {
-    console.error(error);
+    const apiRes = await lehlekaApi.post("/auth/register", body);
 
+    const cookieStore = await cookies();
+    const setCookie = apiRes.headers["set-cookie"];
+
+    if (setCookie) {
+      const cookieArray = Array.isArray(setCookie) ? setCookie : [setCookie];
+      for (const cookieStr of cookieArray) {
+        const parsed = parse(cookieStr);
+
+        const options = {
+          expires: parsed.Expires ? new Date(parsed.Expires) : undefined,
+          path: parsed.Path,
+          maxAge: Number(parsed["Max-Age"]),
+        };
+        if (parsed.accessToken)
+          cookieStore.set("accessToken", parsed.accessToken, options);
+        if (parsed.refreshToken)
+          cookieStore.set("refreshToken", parsed.refreshToken, options);
+      }
+      return NextResponse.json(apiRes.data, { status: apiRes.status });
+    }
+
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  } catch (error) {
     if (isAxiosError(error)) {
       return NextResponse.json(
         { error: error.response?.data?.message || error.message },
