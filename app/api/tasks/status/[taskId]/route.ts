@@ -16,7 +16,7 @@ export async function PATCH(request: Request, { params }: Props) {
 
     const payload = typeof body === "boolean" ? { isDone: body } : body;
 
-    const res = await lehlekaApi.patch(`/tasks/status/${taskId}`, payload, {
+    const res = await lehlekaApi.patch(`/tasks/${taskId}/status`, payload, {
       headers: {
         Cookie: cookieStore.toString(),
       },
