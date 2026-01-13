@@ -3,7 +3,6 @@ import css from "./HeaderModalNavigation.module.css";
 import { useEffect } from "react";
 import Link from "next/link";
 import { useAuthStore } from "@/lib/store/authStore";
-import { useRouter } from 'next/navigation';
 import UserBar from "../UserBar/UserBar";
 
 interface HeaderModalNavigationProps {
@@ -14,7 +13,6 @@ export default function HeaderModalNavigation({
   onClose,
 }: HeaderModalNavigationProps) {
   const { isAuthenticated, user } = useAuthStore();
-  const router = useRouter();
 
   const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
     if (event.target === event.currentTarget) {
@@ -156,7 +154,6 @@ export default function HeaderModalNavigation({
         </div>
         <div className={css.bottom_modal_container}>
           {isAuthenticated ? (
-            // <p>Authenticated</p>
             <UserBar user={user!} />
           ) : (
               <div className={css.btns_container}>
