@@ -6,7 +6,29 @@ import ProfileEditForm from "@/components/ProfileEditForm/ProfileEditForm";
 import styles from "./ProfilePage.module.css";
 
 export default function ProfilePage() {
-  const { data: user } = useProfile();
+  const { data: user, isLoading, error } = useProfile();
+
+  if (isLoading) {
+    return (
+      <div className={styles.container}>
+        <div className={styles.loader}>
+          <div className={styles.spinner}></div>
+          <p>Завантаження профілю...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className={styles.container}>
+        <div className={styles.errorMessage}>
+          <h2>Помилка завантаження профілю</h2>
+          <p>{error.message}</p>
+        </div>
+      </div>
+    );
+  }
 
   if (!user) {
     return (

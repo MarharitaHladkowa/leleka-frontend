@@ -47,7 +47,7 @@ export default function ProfileAvatar({ user }: ProfileAvatarProps) {
     <div className={styles.container}>
       <div className={styles.avatarWrapper}>
         <Image
-          src={user.avatarURL}
+          src={user.avatarUrl}
           alt={user.name}
           width={132}
           height={132}

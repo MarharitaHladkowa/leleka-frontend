@@ -4,7 +4,7 @@ export interface User {
   _id: string;
   email: string;
   name: string;
-  avatarURL: string;
+  avatarUrl: string;
   birthDate: string | null;
   babyGender: BabyGender;
   createdAt: string;
@@ -29,7 +29,7 @@ export interface UpdateUserResponse {
 }
 
 export interface UploadAvatarResponse {
-  avatarURL: string;
+  avatarUrl: string;
   message?: string;
 }
 

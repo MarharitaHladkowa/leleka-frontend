@@ -17,7 +17,9 @@ export default function ProfileEditForm({ user }: ProfileEditFormProps) {
     name: user.name,
     email: user.email,
     babyGender: user.babyGender,
-    birthDate: user.birthDate || "",
+    birthDate: user.birthDate
+      ? new Date(user.birthDate).toISOString().split("T")[0]
+      : "",
   };
 
   const handleSubmit = async (values: ProfileFormValues) => {
@@ -39,7 +41,6 @@ export default function ProfileEditForm({ user }: ProfileEditFormProps) {
       >
         {({ isSubmitting, dirty, resetForm }) => (
           <Form className={styles.form}>
-            {/* Поле імені */}
             <div className={styles.fieldGroup}>
               <label htmlFor="name" className={styles.label}>
                 Ім&apos;я
@@ -58,7 +59,6 @@ export default function ProfileEditForm({ user }: ProfileEditFormProps) {
               />
             </div>
 
-            {/* Поле email */}
             <div className={styles.fieldGroup}>
               <label htmlFor="email" className={styles.label}>
                 Пошта
@@ -77,7 +77,6 @@ export default function ProfileEditForm({ user }: ProfileEditFormProps) {
               />
             </div>
 
-            {/* Поле статі дитини */}
             <div className={styles.fieldGroup}>
               <label htmlFor="babyGender" className={styles.label}>
                 Стать дитини
@@ -89,9 +88,9 @@ export default function ProfileEditForm({ user }: ProfileEditFormProps) {
                   name="babyGender"
                   className={styles.select}
                 >
-                  <option value="unknown">Обрати стать</option>
-                  <option value="boy">Хлопчик</option>
-                  <option value="girl">Дівчинка</option>
+                  <option value="Ще не знаю">Ще не знаю</option>
+                  <option value="Хлопчик">Хлопчик</option>
+                  <option value="Дівчинка">Дівчинка</option>
                 </Field>
               </div>
               <ErrorMessage
@@ -101,14 +100,13 @@ export default function ProfileEditForm({ user }: ProfileEditFormProps) {
               />
             </div>
 
-            {/* Поле планової дати пологів */}
             <div className={styles.fieldGroup}>
-              <label htmlFor="birthDate" className={styles.label}>
+              <label htmlFor="bDate" className={styles.label}>
                 Планова дата пологів
               </label>
               <Field
                 type="date"
-                id="birthDate"
+                id="bDate"
                 name="birthDate"
                 className={styles.input}
               />
@@ -119,7 +117,6 @@ export default function ProfileEditForm({ user }: ProfileEditFormProps) {
               />
             </div>
 
-            {/* Кнопки */}
             <div className={styles.buttons}>
               <button
                 type="button"

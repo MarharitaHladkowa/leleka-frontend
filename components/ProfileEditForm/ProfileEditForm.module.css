@@ -18,18 +18,22 @@
 }
 
 .label {
-  font-size: 0.875rem;
+  font-family: var(--font-family);
+  font-size: 14px;
   font-weight: 400;
-  color: #666;
+  color: var(--color-scheme-text);
 }
 
 .input {
-  padding: 0.875rem 1rem;
-  border: none;
-  background-color: #f5f5f5;
-  border-radius: 8px;
-  font-size: 0.875rem;
-  color: #000;
+  font-family: var(--font-family);
+  padding: 8px 12px;
+  height: 37px;
+  border: 2px solid var(--opacity-transparent);
+  background-color: var(--opacity-neutral-darkest-5);
+  border-radius: 12px;
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--opacity-neutral-darkest-60);
   transition: background-color 0.2s;
 }
 
@@ -48,16 +52,18 @@
 
 .select {
   width: 100%;
-  padding: 0.875rem 1rem;
-  padding-right: 2.5rem;
-  border: none;
-  background-color: #f5f5f5;
-  border-radius: 8px;
-  font-size: 0.875rem;
-  color: #000;
+  font-family: var(--font-family);
+  border: 1px solid var(--opacity-transparent);
+  background-color: var(--color-neutral-lightest);
+  font-size: 14px;
+  color: var(--color-neutral);
   cursor: pointer;
   appearance: none;
   transition: background-color 0.2s;
+  border: 1px solid var(--opacity-transparent);
+  border-radius: 12px;
+  padding: 8px 12px;
+  height: 40px;
 }
 
 .select:focus {
