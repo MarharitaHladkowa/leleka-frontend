@@ -40,7 +40,7 @@ export function useUploadAvatar() {
           if (!oldData) return oldData;
           return {
             ...oldData,
-            avatarURL: data.avatarURL,
+            avatarUrl: data.avatarUrl,
           };
         }
       );

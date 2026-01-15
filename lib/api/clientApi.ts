@@ -11,18 +11,13 @@ export async function updateUser(userData: UpdateUserPayload): Promise<User> {
   return data;
 }
 
-export async function uploadAvatar(file: File): Promise<{ avatarURL: string }> {
+export async function uploadAvatar(file: File): Promise<{ avatarUrl: string }> {
   const formData = new FormData();
   formData.append("avatar", file);
 
-  const { data } = await NextServer.patch<{ avatarURL: string }>(
+  const { data } = await NextServer.patch<{ avatarUrl: string }>(
     "/users/avatar",
-    formData,
-    {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    }
+    formData
   );
 
   return data;
