@@ -14,7 +14,7 @@ import { useRouter } from "next/navigation";
 import { AddTaskModal } from "@/components/AddTaskModal/AddTaskModal";
 
 export default function TaskReminderCard() {
-  const { isOpen, openModal } = useTaskModalStore();
+  const { isOpen, openModal, closeModal } = useTaskModalStore();
   const queryClient = useQueryClient();
   const user = useAuthStore((state) => state.user);
   const router = useRouter();
@@ -89,7 +89,7 @@ export default function TaskReminderCard() {
         </ul>
       )}
       
-      {isOpen && <AddTaskModal />}
+      {isOpen && <AddTaskModal isOpen={isOpen} onClose={closeModal} />}
     </div>
   );
 }
