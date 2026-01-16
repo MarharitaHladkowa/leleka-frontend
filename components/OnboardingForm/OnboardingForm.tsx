@@ -12,6 +12,8 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { NextServer } from '@/lib/api/api';
 import { OnboardingSchema, OnboardingFormValues } from '../../types/onboarding';
 import styles from './OnboardingForm.module.css';
+import { UpdateUserResponse, UploadAvatarResponse, User } from '@/types/user';
+import { useAuthStore } from '@/lib/store/authStore';
 
 registerLocale('uk', uk);
 
@@ -33,6 +35,8 @@ export const OnboardingForm: React.FC = () => {
 
   const [shakeGender, setShakeGender] = useState(false);
   const [shakeDate, setShakeDate] = useState(false);
+
+  const setUser = useAuthStore((state) => state.setUser);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -58,7 +62,7 @@ export const OnboardingForm: React.FC = () => {
   const ensureAccessToken = async () => {
     // має бути endpoint, який по refreshToken виставляє accessToken cookie
     // назву підстав свою: /auth/refresh, /auth/refresh-token тощо
-    await NextServer.post('/auth/refresh');
+    await NextServer.post('/api/auth/refresh');
   };
 
   const formik = useFormik<OnboardingFormValues>({
@@ -77,7 +81,7 @@ export const OnboardingForm: React.FC = () => {
         if (values.avatar) {
           const fd = new FormData();
           fd.append('avatar', values.avatar);
-          await NextServer.patch('/users/avatar', fd); // НЕ став Content-Type вручну
+          const { data } = await NextServer.patch<UploadAvatarResponse>('/api/users/avatar', fd); // НЕ став Content-Type вручну
         }
 
         // 2) text
@@ -86,22 +90,18 @@ export const OnboardingForm: React.FC = () => {
             ? genderMap[values.gender as GenderKey]
             : undefined;
 
-        await NextServer.patch('/users/current', {
+        const { data } = await NextServer.patch<User>('/api/users/current', {
           ...(babyGender ? { babyGender } : {}),
           birthDate: values.deliveryDate ? values.deliveryDate.toISOString() : null,
         });
-
+        // console.log('TextData: ', data);
+        setUser(data);
         toast.success('Дані успішно збережено!');
         router.push('/');
-      } catch (err: any) {
-        const msg =
-          err?.response?.data?.message ||
-          err?.response?.data?.error ||
-          err?.message ||
-          'Сталася помилка при збереженні';
-
+      } catch (error) {
+        const msg = 'Сталася помилка при збереженні';
         toast.error(msg);
-        console.error('Onboarding submit error:', err?.response?.data || err);
+        console.error('Onboarding submit error:', error);
       } finally {
         setSubmitting(false);
       }

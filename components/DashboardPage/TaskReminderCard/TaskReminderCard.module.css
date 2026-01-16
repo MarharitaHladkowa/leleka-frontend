@@ -9,6 +9,7 @@
   max-width: 335px;
   height: auto;
   margin-bottom: 32px;
+  overflow: scroll;
 }
 
 .task_header {
@@ -210,7 +211,7 @@
 
 @media screen and (min-width: 768px) {
   .task_section {
-    max-width: 704px;
+    max-width: 728px;
   .section {
     max-width: 728px;
     height: auto;
@@ -287,4 +288,5 @@
 .addButton:hover {
   background: none !important;
   transform: none !important;
+}
 }
