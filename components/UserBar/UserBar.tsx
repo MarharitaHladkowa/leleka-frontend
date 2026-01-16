@@ -38,7 +38,7 @@ export default function UserBar({ user }: UserBarProps) {
     <div className={css.userBar}>
       <div className={css.userInfo}>
         <Image
-          src={user.avatarURL}
+          src={user.avatarUrl}
           alt={user.name}
           className={css.avatar}
           width={50}
