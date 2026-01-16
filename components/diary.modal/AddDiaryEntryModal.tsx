@@ -2,12 +2,13 @@
 
 import Modal from "@/components/Modal/modal";
 import AddDiaryEntryForm from "./AddDiaryEntryForm";
-import type { Note } from "@/types/diary";
+import type { DiaryNote } from "@/types/diary";
+import css from "./AddDiaryEntryModal.module.css";
 
 interface AddDiaryEntryModalProps {
   isOpen: boolean;
   onClose: () => void;
-  note?: Note;
+  note?: DiaryNote;
 }
 
 export default function AddDiaryEntryModal({
@@ -19,11 +20,15 @@ export default function AddDiaryEntryModal({
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
-      <div>
+      <div className={css.container}>
         <header>
-          <h2>{title}</h2>
-          <button onClick={onClose} aria-label="Close">
-            ✕
+          <h2 className={css.title}>{title}</h2>
+          <button
+            className={css.closeButton}
+            onClick={onClose}
+            aria-label="Close"
+          >
+            &times;
           </button>
         </header>
 

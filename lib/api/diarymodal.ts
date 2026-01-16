@@ -1,42 +1,41 @@
-import axios from "axios";
+import { DiaryNote } from "@/types/diary";
+import { NextServer } from "./api";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3050";
+export interface FetchNotesResponse {
+  data: DiaryNote[];
+}
 
-const api = axios.create({ baseURL: API_URL });
-
-api.interceptors.request.use((config) => {
-  const token = localStorage.getItem("token");
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  return config;
-});
-
-export const createNote = async (values: any) => {
+interface NoteDiaryProps {
+  title: string;
+  text: string;
+  categories: string[];
+}
+export const createNote = async (
+  values: NoteDiaryProps
+): Promise<DiaryNote> => {
   const dataForBackend = {
     title: values.title,
-    categories: values.tags,
-    text: values.content,
+    categories: values.categories,
+    text: values.text,
   };
-  const response = await api.post("/diary", dataForBackend);
+  const response = await NextServer.post("/diaries", dataForBackend);
   return response.data;
 };
 
-export const updateNote = async (id: string, values: any) => {
-  const dataForBackend = {
-    title: values.title,
-    categories: values.tags,
-    text: values.content,
-  };
-  const response = await api.patch(`/diary/${id}`, dataForBackend);
+export const updateNote = async (
+  id: string,
+  note: NoteDiaryProps
+): Promise<DiaryNote> => {
+  console.log(note);
+  const response = await NextServer.patch<DiaryNote>(`/diaries/${id}`, note);
   return response.data;
 };
 
-export const getNotes = async () => {
-  const response = await api.get("/diary");
-  return response.data;
+export const getNotes = async (): Promise<FetchNotesResponse> => {
+  const response = await NextServer.get("/diaries");
+  return response;
 };
-export const deleteNote = async (id: string) => {
-  const response = await api.delete(`/diary/${id}`);
+export const deleteNote = async (id: string): Promise<void> => {
+  const response = await NextServer.delete(`/diaries/${id}`);
   return response.data;
 };
