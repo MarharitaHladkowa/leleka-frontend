@@ -3,7 +3,7 @@ import Select, {
   components,
   GroupBase,
   StylesConfig,
-} from "react-select";
+} from 'react-select';
 
 interface CustomSelectProps<
   Option,
@@ -13,32 +13,32 @@ interface CustomSelectProps<
   hasError?: boolean;
 }
 
-const selectStyles = <Option,>(
+const selectStyles = <Option, IsMulti extends boolean>(
   hasError?: boolean
-): StylesConfig<Option, boolean> => ({
+): StylesConfig<Option, IsMulti> => ({
   container: (base) => ({
     ...base,
     zIndex: 8,
-    fontSize: "14px",
+    fontSize: '14px',
   }),
 
   control: (base, { menuIsOpen, isFocused }) => ({
     ...base,
-    padding: "7px 12px",
-    backgroundColor: "#f2f2f2",
-    borderRadius: menuIsOpen ? "12px 12px 0 0" : "12px",
+    padding: '7px 12px',
+    backgroundColor: '#f2f2f2',
+    borderRadius: menuIsOpen ? '12px 12px 0 0' : '12px',
     borderColor: hasError
-      ? "#c60000"
+      ? '#c60000'
       : menuIsOpen
-      ? "rgba(0, 0, 0, 0.15)"
-      : "transparent",
-    boxShadow: isFocused ? "inset 0 0 0 2px #ffdae0" : "none",
-    minHeight: "42px",
+      ? 'rgba(0, 0, 0, 0.15)'
+      : 'transparent',
+    boxShadow: isFocused ? 'inset 0 0 0 2px #ffdae0' : 'none',
+    minHeight: '42px',
   }),
 
   placeholder: (base) => ({
     ...base,
-    color: hasError ? "#c60000" : "#7f7f7f",
+    color: hasError ? '#c60000' : '#7f7f7f',
   }),
 
   valueContainer: (base) => ({
@@ -48,43 +48,43 @@ const selectStyles = <Option,>(
 
   multiValue: (base) => ({
     ...base,
-    backgroundColor: "rgba(0, 0, 0, 0.05)",
-    borderRadius: "100px",
-    padding: "5px 10px",
+    backgroundColor: 'rgba(0, 0, 0, 0.05)',
+    borderRadius: '100px',
+    padding: '5px 10px',
   }),
 
   multiValueRemove: () => ({
-    display: "none",
+    display: 'none',
   }),
 
   menu: (base) => ({
     ...base,
-    background: "#f2f2f2",
-    border: "1px solid rgba(0, 0, 0, 0.15)",
-    borderTop: "none",
-    borderRadius: "0 0 12px 12px",
-    overflow: "hidden",
+    background: '#f2f2f2',
+    border: '1px solid rgba(0, 0, 0, 0.15)',
+    borderTop: 'none',
+    borderRadius: '0 0 12px 12px',
+    overflow: 'hidden',
   }),
 
   menuList: (base) => ({
     ...base,
-    display: "flex",
-    flexDirection: "column",
-    gap: "8px",
-    padding: "8px 0",
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '8px',
+    padding: '8px 0',
   }),
 
   option: (base, { isSelected }) => ({
     ...base,
-    padding: "7px 12px",
-    backgroundColor: isSelected ? "rgba(0, 0, 0, 0.05)" : "transparent",
-    cursor: "pointer",
-    borderRadius: "8px",
-    display: "flex",
-    gap: "8px",
-    alignItems: "center",
-    "&:hover": {
-      backgroundColor: "rgba(0, 0, 0, 0.05)",
+    padding: '7px 12px',
+    backgroundColor: isSelected ? 'rgba(0, 0, 0, 0.05)' : 'transparent',
+    cursor: 'pointer',
+    borderRadius: '8px',
+    display: 'flex',
+    gap: '8px',
+    alignItems: 'center',
+    '&:hover': {
+      backgroundColor: 'rgba(0, 0, 0, 0.05)',
     },
   }),
 });
@@ -94,7 +94,7 @@ function Checkbox({ isChecked }: { isChecked: boolean }) {
     <svg width="20" height="20" viewBox="0 0 20 20">
       <path
         d="M15 0.5C17.4853 0.5 19.5 2.51472 19.5 5V15C19.5 17.4853 17.4853 19.5 15 19.5H5C2.51472 19.5 0.5 17.4853 0.5 15V5C0.5 2.51472 2.51472 0.5 5 0.5H15Z"
-        fill={isChecked ? "#000" : "rgba(0,0,0,0.05)"}
+        fill={isChecked ? '#000' : 'rgba(0,0,0,0.05)'}
       />
       {isChecked && (
         <path
@@ -112,7 +112,7 @@ export default function CustomSelect<
   Group extends GroupBase<Option> = GroupBase<Option>
 >({ hasError, ...props }: CustomSelectProps<Option, IsMulti, Group>) {
   return (
-    <Select
+    <Select<Option, IsMulti, Group>
       {...props}
       closeMenuOnSelect={!props.isMulti}
       hideSelectedOptions={false}
@@ -129,12 +129,11 @@ export default function CustomSelect<
               height="24"
               viewBox="0 0 24 24"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg"
               style={{
                 transform: indicatorProps.selectProps.menuIsOpen
-                  ? "rotate(180deg)"
-                  : "rotate(0deg)",
-                transition: "transform 0.1s ease",
+                  ? 'rotate(180deg)'
+                  : 'rotate(0deg)',
+                transition: 'transform 0.1s ease',
               }}
             >
               <path
@@ -145,14 +144,15 @@ export default function CustomSelect<
             </svg>
           </components.DropdownIndicator>
         ),
+
         Option: (optionProps) => (
-          <components.Option {...optionProps}>
+          <components.Option<Option, IsMulti, Group> {...optionProps}>
             {props.isMulti && <Checkbox isChecked={optionProps.isSelected} />}
             <span>{optionProps.label}</span>
           </components.Option>
         ),
       }}
-      styles={selectStyles(hasError)}
+      styles={selectStyles<Option, IsMulti>(hasError)}
     />
   );
 }

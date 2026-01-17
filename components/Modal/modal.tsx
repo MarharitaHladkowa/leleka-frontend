@@ -1,21 +1,28 @@
-"use client";
+'use client';
 
-import { useEffect, type ReactNode } from "react";
-import { createPortal } from "react-dom";
-import css from "./Modal.module.css";
+import { useEffect, type ReactNode } from 'react';
+
+import { createPortal } from 'react-dom';
+
+import css from './modal.module.css';
 
 const modalRoot =
-  document.getElementById("modal-root") ??
+  document.getElementById('modal-root') ??
   (() => {
-    const el = document.createElement("div");
-    el.id = "modal-root";
+    const el = document.createElement('div');
+
+    el.id = 'modal-root';
+
     document.body.appendChild(el);
+
     return el;
   })();
 
 interface Props {
   isOpen: boolean;
+
   onClose: () => void;
+
   children: ReactNode;
 }
 
@@ -24,15 +31,17 @@ export default function Modal({ isOpen, onClose, children }: Props) {
     if (!isOpen) return;
 
     const onEsc = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === 'Escape') onClose();
     };
 
-    document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", onEsc);
+    document.body.style.overflow = 'hidden';
+
+    window.addEventListener('keydown', onEsc);
 
     return () => {
-      document.body.style.overflow = "";
-      window.removeEventListener("keydown", onEsc);
+      document.body.style.overflow = '';
+
+      window.removeEventListener('keydown', onEsc);
     };
   }, [isOpen, onClose]);
 
@@ -44,6 +53,7 @@ export default function Modal({ isOpen, onClose, children }: Props) {
         {children}
       </div>
     </div>,
+
     modalRoot
   );
 }

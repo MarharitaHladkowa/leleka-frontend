@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   ErrorMessage,
@@ -7,18 +7,18 @@ import {
   Form,
   Formik,
   FormikHelpers,
-} from "formik";
-import { useId } from "react";
-import * as Yup from "yup";
+} from 'formik';
+import { useId } from 'react';
+import * as Yup from 'yup';
 
-import css from "./AddDiaryEntryForm.module.css";
-import { createNote, updateNote } from "@/lib/api/diarymodal";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { DiaryNote } from "@/types/diary";
-import { Emotion, EMOTIONS } from "@/constants/emotions";
-import CustomSelect from "./SelectComponent/Select";
-import { create } from "zustand";
-import { useNoteModalStore } from "@/lib/store/modalNoteStore";
+import css from './AddDiaryEntryForm.module.css';
+import { createNote, updateNote } from '@/lib/api/diarymodal';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { DiaryNote } from '@/types/diary';
+import { Emotion, EMOTIONS } from '@/constants/emotions';
+import CustomSelect from './SelectComponent/Select';
+
+import { useNoteModalStore } from '@/lib/store/modalNoteStore';
 
 interface DiaryValues {
   title: string;
@@ -26,19 +26,19 @@ interface DiaryValues {
   text: string;
 }
 const emptyValues: DiaryValues = {
-  title: "",
+  title: '',
   categories: [],
-  text: "",
+  text: '',
 };
 
 const diaryValidationSchema = Yup.object().shape({
   title: Yup.string()
-    .required("Введіть заголовок")
-    .max(100, "Максимум 100 символів"),
-  categories: Yup.array().min(1, "Оберіть хоча б одну категорію"),
+    .required('Введіть заголовок')
+    .max(100, 'Максимум 100 символів'),
+  categories: Yup.array().min(1, 'Оберіть хоча б одну категорію'),
   text: Yup.string()
-    .required("Поле запису не може бути порожнім")
-    .max(1000, "Максимум 1000 символів"),
+    .required('Поле запису не може бути порожнім')
+    .max(1000, 'Максимум 1000 символів'),
 });
 
 interface Props {
@@ -50,7 +50,6 @@ export default function AddDiaryEntryForm({ editingNote = null }: Props) {
   const { closeNoteModal } = useNoteModalStore();
   const queryClient = useQueryClient();
 
-  // Мутація для створення
   const createMutation = useMutation({
     mutationFn: (payload: {
       title: string;
@@ -58,19 +57,18 @@ export default function AddDiaryEntryForm({ editingNote = null }: Props) {
       categories: string[];
     }) => createNote(payload),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["notes"] });
+      queryClient.invalidateQueries({ queryKey: ['notes'] });
       closeNoteModal();
     },
   });
 
-  // Мутація для оновлення
   const updateMutation = useMutation({
     mutationFn: (payload: {
       id: string;
       body: { title: string; text: string; categories: string[] };
     }) => updateNote(payload.id, payload.body),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["notes"] });
+      queryClient.invalidateQueries({ queryKey: ['notes'] });
       closeNoteModal();
     },
   });
@@ -122,7 +120,7 @@ export default function AddDiaryEntryForm({ editingNote = null }: Props) {
                 id={`${fieldId}-title`}
                 placeholder="Введіть заголовок запису"
                 className={`${css.textInputTitle} ${
-                  meta.touched && meta.error ? css.inputError : ""
+                  meta.touched && meta.error ? css.inputError : ''
                 }`}
               />
             )}
@@ -171,7 +169,7 @@ export default function AddDiaryEntryForm({ editingNote = null }: Props) {
                 id={`${fieldId}-description`}
                 placeholder="Запишіть, як ви себе відчуваєте"
                 className={`${css.textInputTextArea} ${
-                  meta.touched && meta.error ? css.inputError : ""
+                  meta.touched && meta.error ? css.inputError : ''
                 }`}
               />
             )}
