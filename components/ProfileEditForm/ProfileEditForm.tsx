@@ -1,6 +1,6 @@
 "use client";
 
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field, FieldProps, ErrorMessage } from "formik";
 import { useUpdateProfile } from "@/lib/hooks/useProfile";
 import { profileValidationSchema } from "@/lib/validations/profileSchema";
 import type { User, ProfileFormValues } from "@/types/user";
@@ -38,6 +38,8 @@ export default function ProfileEditForm({ user }: ProfileEditFormProps) {
         validationSchema={profileValidationSchema}
         onSubmit={handleSubmit}
         enableReinitialize
+        validateOnChange={true}
+        validateOnBlur={true}
       >
         {({ isSubmitting, dirty, resetForm }) => (
           <Form className={styles.form}>
@@ -45,13 +47,19 @@ export default function ProfileEditForm({ user }: ProfileEditFormProps) {
               <label htmlFor="name" className={styles.label}>
                 Ім&apos;я
               </label>
-              <Field
-                type="text"
-                id="name"
-                name="name"
-                className={styles.input}
-                placeholder="Ганна"
-              />
+              <Field name="name">
+                {({ field, meta }: FieldProps<string>) => (
+                  <input
+                    {...field}
+                    type="text"
+                    id="name"
+                    placeholder="Введіть ім'я"
+                    className={`${styles.input} ${
+                      meta.error && meta.touched ? styles.inputError : ""
+                    }`}
+                  />
+                )}
+              </Field>
               <ErrorMessage
                 name="name"
                 component="div"
@@ -63,13 +71,19 @@ export default function ProfileEditForm({ user }: ProfileEditFormProps) {
               <label htmlFor="email" className={styles.label}>
                 Пошта
               </label>
-              <Field
-                type="email"
-                id="email"
-                name="email"
-                className={styles.input}
-                placeholder="hanna@gmail.com"
-              />
+              <Field name="email">
+                {({ field, meta }: FieldProps<string>) => (
+                  <input
+                    {...field}
+                    type="email"
+                    id="email"
+                    placeholder="Введіть електронну"
+                    className={`${styles.input} ${
+                      meta.error && meta.touched ? styles.inputError : ""
+                    }`}
+                  />
+                )}
+              </Field>
               <ErrorMessage
                 name="email"
                 component="div"
@@ -81,17 +95,47 @@ export default function ProfileEditForm({ user }: ProfileEditFormProps) {
               <label htmlFor="babyGender" className={styles.label}>
                 Стать дитини
               </label>
-              <div className={styles.selectWrapper}>
-                <Field
-                  as="select"
-                  id="babyGender"
-                  name="babyGender"
-                  className={styles.select}
-                >
-                  <option value="Ще не знаю">Ще не знаю</option>
-                  <option value="Хлопчик">Хлопчик</option>
-                  <option value="Дівчинка">Дівчинка</option>
+              <div
+                className={styles.selectWrapper}
+                onMouseDown={(e) => {
+                  const wrapper = e.currentTarget;
+                  wrapper.classList.add(styles.selectOpen);
+                }}
+                onBlur={(e) => {
+                  const wrapper = e.currentTarget;
+                  setTimeout(() => {
+                    wrapper.classList.remove(styles.selectOpen);
+                  }, 100);
+                }}
+              >
+                <Field name="babyGender">
+                  {({ field, meta }: FieldProps<string>) => (
+                    <select
+                      {...field}
+                      id="babyGender"
+                      className={`${styles.select} ${
+                        meta.error && meta.touched ? styles.selectError : ""
+                      }`}
+                      onChange={(e) => {
+                        field.onChange(e);
+                        const wrapper = e.target.closest(
+                          `.${styles.selectWrapper}`,
+                        );
+                        if (wrapper) {
+                          wrapper.classList.remove(styles.selectOpen);
+                        }
+                      }}
+                    >
+                      <option value="">Оберіть стать</option>
+                      <option value="Ще не знаю">Ще не знаю</option>
+                      <option value="Хлопчик">Хлопчик</option>
+                      <option value="Дівчинка">Дівчинка</option>
+                    </select>
+                  )}
                 </Field>
+                <svg className={styles.selectIcon} width="20" height="20">
+                  <use href="/icon-sprite.svg#icon-arrow-down" />
+                </svg>
               </div>
               <ErrorMessage
                 name="babyGender"
@@ -104,12 +148,23 @@ export default function ProfileEditForm({ user }: ProfileEditFormProps) {
               <label htmlFor="bDate" className={styles.label}>
                 Планова дата пологів
               </label>
-              <Field
-                type="date"
-                id="bDate"
-                name="birthDate"
-                className={styles.input}
-              />
+              <div className={styles.dateWrapper}>
+                <Field name="birthDate">
+                  {({ field, meta }: FieldProps<string>) => (
+                    <input
+                      {...field}
+                      type="date"
+                      id="bDate"
+                      className={`${styles.input} ${
+                        meta.error && meta.touched ? styles.inputError : ""
+                      }`}
+                    />
+                  )}
+                </Field>
+                <svg className={styles.dateIcon} width="20" height="20">
+                  <use href="/icon-sprite.svg#icon-arrow-down" />
+                </svg>
+              </div>
               <ErrorMessage
                 name="birthDate"
                 component="div"
