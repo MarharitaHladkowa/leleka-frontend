@@ -105,7 +105,7 @@ export default function DiaryEntryDetails({
             className={`${styles.iconBtn} ${styles.danger}`}
             onClick={() => {
               const ok = window.confirm('Видалити запис?');
-              if (ok) delMutation.mutate(entry.id);
+              if (ok) delMutation.mutate(entry._id);
             }}
             disabled={delMutation.isPending}
           >

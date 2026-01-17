@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { useMemo, useState } from "react";
-import styles from "./DiaryList.module.css";
-import type { DiaryEntry } from "@/types/diary";
-import DiaryEntryCard from "../DiaryEntryCard/DiaryEntryCard";
-import AddDiaryEntryModal from "../AddDiaryEntryModal/AddDiaryEntryModal";
+import { useMemo, useState } from 'react';
+import styles from './DiaryList.module.css';
+import type { DiaryEntry } from '@/types/diary';
+import DiaryEntryCard from '../DiaryEntryCard/DiaryEntryCard';
+// import AddDiaryEntryModal from "../AddDiaryEntryModal/AddDiaryEntryModal";
 
 type Props = {
   entries: DiaryEntry[];
@@ -12,7 +12,7 @@ type Props = {
   isError: boolean;
   selectedId: string | null;
   onSelect: (id: string) => void;
-  mode: "desktop" | "mobile";
+  mode: 'desktop' | 'mobile';
 };
 
 export default function DiaryList({
@@ -34,12 +34,12 @@ export default function DiaryList({
     return (
       <ul className={styles.list}>
         {entries.map((e) => (
-          <li key={e.id} className={styles.item}>
+          <li key={e._id} className={styles.item}>
             <DiaryEntryCard
               entry={e}
-              isActive={mode === "desktop" ? selectedId === e.id : false}
+              isActive={mode === 'desktop' ? selectedId === e._id : false}
               mode={mode}
-              onClick={() => onSelect(e.id)}
+              onClick={() => onSelect(e._id)}
             />
           </li>
         ))}
@@ -66,11 +66,11 @@ export default function DiaryList({
 
       <div className={styles.scrollArea}>{content}</div>
 
-      <AddDiaryEntryModal
+      {/* <AddDiaryEntryModal
         key={isModalOpen ? "open" : "closed"}
         open={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-      />
+      /> */}
     </section>
   );
 }

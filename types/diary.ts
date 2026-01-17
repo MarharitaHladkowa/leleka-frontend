@@ -1,26 +1,15 @@
-export type DiaryEmotion =
-  | "натхнення"
-  | "любов"
-  | "енергія"
-  | "нудота"
-  | "тривога"
-  | "апетит"
-  | "радість"
-  | "щастя"
-  | "вдячність";
-
-export type DiaryEntry = {
-  id: string;
+export interface DiaryNote {
+  _id: string;
   title: string;
-  content: string;
-  emotions: DiaryEmotion[];
-  createdAt: string;
-};
+  date: string;
+  categories: string[];
+  text: string;
+}
 
 export type DiaryEntryCreateDto = {
   title: string;
   content: string;
-  emotions: DiaryEmotion[];
+  emotions: string[];
 };
 
 export type DiaryEntryUpdateDto = Partial<DiaryEntryCreateDto>;

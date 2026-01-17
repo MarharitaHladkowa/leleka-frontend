@@ -1,24 +1,24 @@
-"use client";
+'use client';
 
-import { useMemo, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import styles from "./DiaryPage.module.css";
+import { useMemo, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import styles from './DiaryPage.module.css';
 
-import GreetingBlock from "@/components/diary/GreetingBlock/GreetingBlock";
-import DiaryList from "@/components/diary/DiaryList/DiaryList";
-import DiaryEntryDetails from "@/components/diary/DiaryEntryDetails/DiaryEntryDetails";
-import { getDiaryEntries } from "@/lib/api/diaryApi";
-import { useMediaQuery } from "@/lib/hooks/useMediaQuery";
+import GreetingBlock from '@/components/diary/GreetingBlock/GreetingBlock';
+import DiaryList from '@/components/diary/DiaryList/DiaryList';
+import DiaryEntryDetails from '@/components/diary/DiaryEntryDetails/DiaryEntryDetails';
+import { getDiaryEntries } from '@/lib/api/diaryApi';
+import { useMediaQuery } from '@/lib/hooks/useMediaQuery';
 
 export default function DiaryPage() {
-  const isDesktop = useMediaQuery("(min-width: 1440px)");
+  const isDesktop = useMediaQuery('(min-width: 1440px)');
 
   const {
     data = [],
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ["diaryEntries"],
+    queryKey: ['diaryEntries'],
     queryFn: getDiaryEntries,
   });
 
@@ -28,9 +28,8 @@ export default function DiaryPage() {
 
   const activeId = useMemo(() => {
     if (!isDesktop) return null;
-    return selectedId ?? entries[0]?.id ?? null;
+    return selectedId ?? entries[0]?._id ?? entries[0]?._id ?? null;
   }, [isDesktop, selectedId, entries]);
-
   return (
     <div className={styles.page}>
       <GreetingBlock />
@@ -43,7 +42,7 @@ export default function DiaryPage() {
             isError={isError}
             selectedId={activeId}
             onSelect={(id: string) => setSelectedId(id)}
-            mode={isDesktop ? "desktop" : "mobile"}
+            mode={isDesktop ? 'desktop' : 'mobile'}
           />
         </div>
 
