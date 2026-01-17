@@ -11,7 +11,7 @@ import { fetchTasks, updateTaskStatus } from "@/lib/api/taskApi";
 import { useTaskModalStore } from "@/lib/store/taskModalStore";
 import { useAuthStore } from "@/lib/store/authStore";
 import { useRouter } from "next/navigation";
-// import { AddTaskModal } from "@/components/AddTaskModal/AddTaskModal";
+import { AddTaskModal } from "@/components/AddTaskModal/AddTaskModal";
 
 export default function TaskReminderCard() {
   const { isOpen, openModal, closeModal } = useTaskModalStore();
@@ -43,8 +43,8 @@ export default function TaskReminderCard() {
   };
 
   return (
-    <div className={styles.section}>
-      <div className={styles.header}>
+    <div className={styles.task_section}>
+      <div className={styles.task_header}>
         <h2>Важливі завдання</h2>
         <button className={styles.addButton} onClick={handleAddTaskClick}>
           ＋
@@ -52,10 +52,15 @@ export default function TaskReminderCard() {
       </div>
 
       {tasks.length === 0 ? (
-        <div className={styles.emptyState}>
-          <p className={styles.emptyTitle}>Наразі немає жодних завдань</p>
-          <p className={styles.emptySubtitle}>Створіть мерщій нове завдання!</p>
-          <button className={styles.createButton} onClick={handleAddTaskClick}>
+        <div className={styles.task_emptyState}>
+          <p className={styles.task_emptyTitle}>Наразі немає жодних завдань</p>
+          <p className={styles.task_emptySubtitle}>
+            Створіть мерщій нове завдання!
+          </p>
+          <button
+            className={styles.task_createButton}
+            onClick={handleAddTaskClick}
+          >
             Створити завдання
           </button>
         </div>
@@ -88,8 +93,8 @@ export default function TaskReminderCard() {
           ))}
         </ul>
       )}
-
-      {/* {isOpen && <AddTaskModal  />} */}
+      
+      {isOpen && <AddTaskModal isOpen={isOpen} onClose={closeModal} />}
     </div>
   );
 }

@@ -1,0 +1,21 @@
+.container {
+  max-width: 375px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 24px 20px 55px;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .container {
+    padding: 24px 32px 170px;
+    max-width: 768px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1440px) {
+  .container {
+    max-width: 644px;
+  }
+}
