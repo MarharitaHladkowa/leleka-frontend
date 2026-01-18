@@ -30,5 +30,6 @@ export const checkServerSession = async () => {
 
 export const serverApi = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000',
+  withCredentials: true,
   // withCredentials тут не обов’язково, бо ми будемо явно додавати Authorization/Cookie
 });
