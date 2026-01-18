@@ -16,7 +16,7 @@ export interface CreateTaskBody {
 
 export async function fetchTasks(): Promise<TasksResponce> {
   try {
-    const res = await NextServer.get('/api/tasks');
+    const res = await NextServer.get('/tasks');
 
     return {
       tasks: res.data.data || [],
@@ -30,7 +30,7 @@ export async function fetchTasks(): Promise<TasksResponce> {
 }
 
 export async function createTask(body: CreateTaskBody): Promise<Task> {
-  const res = await NextServer.post('/api/tasks', body);
+  const res = await NextServer.post('/tasks', body);
 
   if (res.status !== 201) {
     throw new Error('Не вдалося створити завдання');
@@ -43,7 +43,7 @@ export async function updateTaskStatus(
   taskId: string,
   isDone: boolean
 ): Promise<Task> {
-  const res = await NextServer.patch(`/api/tasks/${taskId}/status`, { isDone });
+  const res = await NextServer.patch(`/tasks/${taskId}/status`, { isDone });
 
   if (res.status !== 200) {
     throw new Error('Не вдалося оновити статус завдання');
