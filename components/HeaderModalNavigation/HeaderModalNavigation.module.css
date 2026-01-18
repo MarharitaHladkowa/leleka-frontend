@@ -122,7 +122,7 @@
   justify-content: center;
   flex-direction: row;
   text-decoration: none;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 500;
   font-size: 14px;
   line-height: 1.6;
@@ -152,7 +152,7 @@
   justify-content: center;
   flex-direction: row;
   text-decoration: none;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 500;
   font-size: 14px;
   line-height: 1.6;
@@ -174,4 +174,20 @@
 .login_btn:active {
   background: #b2b2b2;
   border-bottom: none;
+}
+
+.bottom_modal_container {
+  border-top: 1px solid #00000026;
+  padding-top: 16px;
+  margin-top: 16px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.btns_container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
 }
