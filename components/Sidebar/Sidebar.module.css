@@ -73,7 +73,7 @@
 }
 
 .active_link {
-  background-color: #fff4f6;
+  background: var(--color-scheme-foreground-alt);
 }
 
 .menu_link {
@@ -106,7 +106,7 @@
 }
 
 .navigation_list_item:hover {
-  background: #fff4f6;
+  background: var(--color-scheme-foreground);
 }
 
 .btns_container {
@@ -121,18 +121,18 @@
   justify-content: center;
   flex-direction: row;
   text-decoration: none;
-  font-family: "Lato", sans-serif;
+  font-family: 'Lato', sans-serif;
   font-weight: 500;
   font-size: 14px;
   line-height: 1.6;
   color: #000;
   border: none;
-  border-bottom: 4px solid #ffcbd3;
+  border-bottom: 4px solid var(--color-scheme-accent);
+  background: var(--color-scheme-foreground);
   border-radius: 100px;
   padding: 10px 24px;
   /* width: 268px; */
   height: 42px;
-  background: #ffdae0;
 }
 
 .register_btn:hover {
@@ -151,7 +151,7 @@
   justify-content: center;
   flex-direction: row;
   text-decoration: none;
-  font-family: "Lato", sans-serif;
+  font-family: 'Lato', sans-serif;
   font-weight: 500;
   font-size: 14px;
   line-height: 1.6;

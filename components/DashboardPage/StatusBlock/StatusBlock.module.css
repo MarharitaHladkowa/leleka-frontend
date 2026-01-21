@@ -12,7 +12,7 @@
   padding: 16px;
   width: 159px;
   height: 105px;
-  background-color: #fff4f6;
+  background: var(--color-scheme-foreground-alt);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -24,7 +24,7 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 1.5;
-  color: #000;
+  color: var(--color-scheme-text);
   padding: 0;
   margin: 0;
 }
@@ -34,7 +34,7 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 1.5;
-  color: #000;
+  color: var(--color-scheme-text);
 }
 
 .status_value {
@@ -43,7 +43,7 @@
   font-size: 40px;
   line-height: 1.2;
   letter-spacing: 0.01em;
-  color: #000;
+  color: var(--color-scheme-text);
 }
 
 @media only screen and (min-width: 768px) {

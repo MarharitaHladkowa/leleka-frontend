@@ -16,7 +16,7 @@
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  background-color: var(--color-white);
+  background-color: var(--color-scheme-background);
 }
 
 .containerRegister {
@@ -55,7 +55,7 @@
   line-height: 1.1;
   text-align: center;
   margin: 0 0 32px;
-  color: var(--color-neutral-darker);
+  color: var(--color-scheme-text);
 }
 
 .form {
@@ -96,7 +96,7 @@
   width: 164px;
   height: 164px;
   border-radius: 50%;
-  background-color: var(--color-neutral-lightest);
+  background-color: var(--color-scheme-foreground-alt);
   position: relative;
   overflow: hidden;
   cursor: pointer;
@@ -104,7 +104,7 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 24px;
-  border: 1px solid var(--color-neutral-lighter);
+  border: 1px solid var(--color-scheme-border);
 }
 
 .image {
@@ -112,16 +112,15 @@
 }
 
 .uploadBtn {
-  background: var(--color-neutral-lightest);
+  border-bottom: 4px solid var(--color-scheme-accent);
+  background: var(--color-scheme-foreground);
   border: none;
-  border-bottom: 4px solid var(--opacity-neutral-darkest-15);
   border-radius: 100px;
   padding: 8px 24px;
   font-size: 14px;
   cursor: pointer;
   font-family: var(--font-family);
   font-weight: 500;
-  font-size: 14px;
   line-height: 160%;
   color: var(--color-scheme-text);
 }
@@ -143,11 +142,11 @@
   width: 100%;
   height: 40px;
   padding: 0 12px;
-  background-color: var(--color-neutral-lightest);
+  background-color: var(--color-scheme-foreground-alt);
   border: 1.5px solid transparent;
   border-radius: 12px;
   font-size: 14px;
-  color: var(--color-neutral-darker);
+  color: var(--color-scheme-text);
   outline: none;
   cursor: pointer;
   appearance: none;
@@ -165,12 +164,12 @@
 .input {
   width: 100%;
   height: 37px;
-  background-color: var(--color-neutral-lightest);
+  background-color: var(--color-scheme-foreground-alt);
   border: 1.5px solid transparent;
   border-radius: 12px;
   padding: 0 12px;
   font-size: 14px;
-  color: var(--color-neutral-darker);
+  color: var(--color-scheme-text);
   outline: none;
   box-sizing: border-box;
 }
@@ -182,30 +181,24 @@
 .error {
   color: var(--color-red);
   font-size: 12px;
-  margin-top: 4px;
 }
 
 @keyframes shake {
   0% {
     transform: translateX(0);
   }
-
   20% {
     transform: translateX(-4px);
   }
-
   40% {
     transform: translateX(4px);
   }
-
   60% {
     transform: translateX(-4px);
   }
-
   80% {
     transform: translateX(4px);
   }
-
   100% {
     transform: translateX(0);
   }
@@ -218,9 +211,9 @@
 .button {
   width: 100%;
   height: 42px;
-  background-color: var(--color-pastel-pink-light);
-  border: none;
   border-bottom: 4px solid var(--color-scheme-accent);
+  background: var(--color-scheme-foreground);
+  border: none;
   border-radius: 100px;
   cursor: pointer;
   transition: opacity 0.2s;
@@ -237,7 +230,7 @@
 }
 
 .button:active {
-  background: var(--color-neutral-light);
+  background: var(--color-scheme-foreground);
   border: none;
 }
 
@@ -283,7 +276,7 @@
 
 .selectField {
   height: 42px;
-  background-color: var(--color-neutral-lightest);
+  background-color: var(--color-scheme-foreground-alt);
   border: 1px solid var(--opacity-transparent);
   border-radius: 12px;
   padding: 0 12px;
@@ -296,16 +289,16 @@
 
 .selectField.active {
   border-radius: 12px 12px 0 0;
-  border-bottom: 1px solid var(--color-neutral-lighter);
+  border-bottom: 1px solid var(--color-scheme-border);
 }
 
 .placeholderText {
-  color: var(--color-neutral-light);
+  color: var(--color-scheme-text);
   font-size: 14px;
 }
 
 .selectedText {
-  color: var(--color-neutral-darker);
+  color: var(--color-scheme-text);
   font-size: 14px;
 }
 
@@ -322,7 +315,7 @@
   top: 100%;
   left: 0;
   width: 100%;
-  background-color: var(--color-neutral-lightest);
+  background-color: var(--color-scheme-foreground-alt);
   border-radius: 0 0 12px 12px;
   overflow: hidden;
   z-index: 100;
@@ -332,13 +325,13 @@
 .option {
   padding: 12px 16px;
   font-size: 14px;
-  color: var(--color-neutral-darker);
+  color: var(--color-scheme-text);
   cursor: pointer;
   transition: background 0.2s ease;
 }
 
 .option:hover {
-  background-color: var(--color-neutral-lighter);
+  background-color: var(--color-scheme-foreground);
 }
 
 @media screen and (min-width: 1440px) {
@@ -386,7 +379,7 @@
   .background {
     display: block;
     flex: 1;
-    background-color: var(--color-oasis-light);
+    background-color: var(--color-scheme-background);
     background-image: url('/onboarding.jpg');
     background-size: cover;
     background-position: center;

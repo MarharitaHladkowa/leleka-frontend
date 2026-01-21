@@ -1,5 +1,5 @@
 .wrap {
-  background: var(--color-scheme-foreground);
+  background: var(--color-scheme-foreground-alt);
   border-radius: 24px;
   padding: 16px;
   overflow: hidden;

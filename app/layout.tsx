@@ -1,34 +1,35 @@
-import type { Metadata } from "next";
-import { Comfortaa, Geist, Geist_Mono, Lato } from "next/font/google";
-import "./globals.css";
-import { Toaster } from "react-hot-toast";
-import TanStackProvider from "@/components/TanStackProvider/TanStackProvider";
-import Header from "@/components/Header/Header";
+import type { Metadata } from 'next';
+import { Comfortaa, Geist, Geist_Mono, Lato } from 'next/font/google';
+import './globals.css';
+import { Toaster } from 'react-hot-toast';
+import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
+import Header from '@/components/Header/Header';
+import ThemeProvider from '@/components/ThemeProvider/ThemeProvider';
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
 });
 
 const comfortaa = Comfortaa({
-  variable: "--font-comfortaa",
-  subsets: ["latin", "cyrillic"],
-  weight: ["700"],
+  variable: '--font-comfortaa',
+  subsets: ['latin', 'cyrillic'],
+  weight: ['700'],
 });
 
 const lato = Lato({
-  variable: "--font-lato",
-  subsets: ["latin"],
-  weight: ["400", "700"],
+  variable: '--font-lato',
+  subsets: ['latin'],
+  weight: ['400', '700'],
 });
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
 });
 
 export const metadata: Metadata = {
-  title: "Лелека",
-  description: "Зручний застосунок для супроводу вагітності",
+  title: 'Лелека',
+  description: 'Зручний застосунок для супроводу вагітності',
 };
 
 export default function RootLayout({
@@ -40,8 +41,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <TanStackProvider>
-          {children}
-          <Toaster position="top-right" toastOptions={{ duration: 2000 }} />
+          <ThemeProvider>
+            {children}
+            <Toaster position="top-right" toastOptions={{ duration: 2000 }} />
+          </ThemeProvider>
         </TanStackProvider>
       </body>
     </html>

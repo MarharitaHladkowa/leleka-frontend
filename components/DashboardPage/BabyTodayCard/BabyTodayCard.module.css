@@ -6,7 +6,7 @@
   width: 335px;
   height: auto;
 
-  background: #fff4f6;
+  background: var(--color-scheme-foreground-alt);
   margin-bottom: 24px;
 }
 
@@ -15,7 +15,7 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 1.5;
-  color: #000;
+  color: var(--color-scheme-text);
   padding: 0;
   margin: 0;
 }
@@ -26,13 +26,13 @@
   font-size: 20px;
   line-height: 1.4;
   letter-spacing: 0.01em;
-  color: #000;
+  color: var(--color-scheme-text);
   margin-top: 0;
   margin-bottom: 16px;
 }
 
 .babytoday_image {
-  border: 1px solid rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--color-scheme-border);
   border-radius: 24px;
   width: 287px;
   height: 216px;
@@ -53,7 +53,7 @@
   font-weight: 700;
   font-size: 14px;
   line-height: 1.5;
-  color: #000;
+  color: var(--color-scheme-text);
 }
 
 .babytoday_info:last-of-type {
@@ -65,7 +65,7 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 1.5;
-  color: #000;
+  color: var(--color-scheme-text);
 }
 
 .babytoday_infotext:last-of-type {
@@ -113,7 +113,7 @@
   }
 
   .babytoday_card::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.15);
+    background: var(--opacity-neutral-darkest-15);
     border-radius: 4px;
   }
   .babytoday_title {
