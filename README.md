@@ -1,36 +1,12 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+🕊️👶 Leleka Project
+Our team developed a Ukrainian web application for pregnant women, designed to track pregnancy progress, baby development, and personal notes.
 
-## Getting Started
+The application includes:
 
-First, run the development server:
+Registration, login, and onboarding with due date input, avatar selection, and baby’s gender (app theme automatically changes: pink, blue, or neutral) Personalized dashboard with greeting, current pregnancy week, countdown, and daily tasks Interactive Journey showing weekly baby development, tips for mothers, and tabs for “Baby Development” and “Mom’s Body” Feelings diary (Diary) with full create, edit, delete functionality, emotion selection, and detailed entry view Secure logout with confirmation and state clearance The app is responsive for mobile, tablet, and desktop, follows a mobile-first approach, uses CSS Modules for styling, Next.js App Router for routing, Zustand for state management, Formik with Yup for forms, React Query for data fetching, and displays loaders and error notifications.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🧰 Tech Stack
+Node.js | Next.js | TypeScript | REST API | CSS3 | Zustand | React Query | Formik | Yup
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+💻 Features / My Contribution
+Fully developed registration and onboarding pages, including theme switching Fully developed the Journey page for mother and baby Fully developed the Diary page Fixed and optimized the entire frontend (Next.js/TypeScript and CSS) Acted as Deputy Team Lead
