@@ -29,14 +29,16 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Лелека",
-  description: "Зручний застосунок для супроводу вагітності",
+  description:
+    "Зручний застосунок для супроводу вагітності: трекінг розвитку дитини, щоденник мами та корисні поради для батьків на кожен день.", // Больше 100 символов
   openGraph: {
-    title: "Leleka Project",
-    description: "Командный проект по созданию веб-приложения",
+    title: "Leleka Project — Baby Tracking App",
+    description:
+      "Командний проект: веб-застосунок для майбутніх мам. Функціонал включає щоденник, трекер стану дитини та персоналізовані поради.",
     url: "https://leleka-frontend-rust.vercel.app/",
     images: [
       {
-        url: "https://leleka-frontend-rust.vercel.app/og-image.jpg",
+        url: "https://github.com/MarharitaHladkowa/leleka-frontend/blob/main/public/og-image.jpg?raw=true", // Твоя прямая ссылка
         width: 1200,
         height: 630,
         alt: "Leleka App Preview",
