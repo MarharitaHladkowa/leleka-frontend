@@ -1,35 +1,47 @@
-import type { Metadata } from 'next';
-import { Comfortaa, Geist, Geist_Mono, Lato } from 'next/font/google';
-import './globals.css';
-import { Toaster } from 'react-hot-toast';
-import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
-import Header from '@/components/Header/Header';
-import ThemeProvider from '@/components/ThemeProvider/ThemeProvider';
+import type { Metadata } from "next";
+import { Comfortaa, Geist, Geist_Mono, Lato } from "next/font/google";
+import "./globals.css";
+import { Toaster } from "react-hot-toast";
+import TanStackProvider from "@/components/TanStackProvider/TanStackProvider";
+import Header from "@/components/Header/Header";
+import ThemeProvider from "@/components/ThemeProvider/ThemeProvider";
 
 const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
 });
 
 const comfortaa = Comfortaa({
-  variable: '--font-comfortaa',
-  subsets: ['latin', 'cyrillic'],
-  weight: ['700'],
+  variable: "--font-comfortaa",
+  subsets: ["latin", "cyrillic"],
+  weight: ["700"],
 });
 
 const lato = Lato({
-  variable: '--font-lato',
-  subsets: ['latin'],
-  weight: ['400', '700'],
+  variable: "--font-lato",
+  subsets: ["latin"],
+  weight: ["400", "700"],
 });
 const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: 'Лелека',
-  description: 'Зручний застосунок для супроводу вагітності',
+  title: "Лелека",
+  description: "Зручний застосунок для супроводу вагітності",
+  openGraph: {
+    title: "Leleka Project",
+    description: "Командный проект по созданию веб-приложения",
+    url: "https://leleka-frontend-rust.vercel.app/", // Твоя ссылка
+    images: [
+      {
+        url: "https://leleka-frontend-rust.vercel.app/og-image.jpg", // ПРЯМАЯ ссылка на картинку
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
