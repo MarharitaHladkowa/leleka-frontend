@@ -33,12 +33,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Leleka Project",
     description: "Командный проект по созданию веб-приложения",
-    url: "https://leleka-frontend-rust.vercel.app/", // Твоя ссылка
+    url: "https://leleka-frontend-rust.vercel.app/",
     images: [
       {
-        url: "https://leleka-frontend-rust.vercel.app/og-image.jpg", // ПРЯМАЯ ссылка на картинку
+        url: "https://leleka-frontend-rust.vercel.app/og-image.jpg",
         width: 1200,
         height: 630,
+        alt: "Leleka App Preview",
       },
     ],
   },
